@@ -1,12 +1,17 @@
-# Homebrew Kesha
+# Homebrew Tap
 
-Homebrew tap for [Kesha Voice Kit](https://github.com/drakulavich/kesha-voice-kit).
+Homebrew tap for packages maintained by
+[drakulavich](https://github.com/drakulavich).
+
+## Formulae
+
+- [`kesha-voice-kit`](https://github.com/drakulavich/kesha-voice-kit)
 
 ## Install
 
 ```bash
 brew tap oven-sh/bun
-brew install drakulavich/kesha/kesha-voice-kit
+brew install drakulavich/tap/kesha-voice-kit
 kesha install
 kesha audio.ogg
 ```
@@ -19,10 +24,10 @@ commands. Engine binaries and models are downloaded explicitly with
 
 ```bash
 brew tap oven-sh/bun
-brew tap drakulavich/kesha "$(pwd)"
-brew install --build-from-source drakulavich/kesha/kesha-voice-kit
-brew test drakulavich/kesha/kesha-voice-kit
-brew audit --strict --formula drakulavich/kesha/kesha-voice-kit
+brew tap drakulavich/tap "$(pwd)"
+brew install --build-from-source drakulavich/tap/kesha-voice-kit
+brew test drakulavich/tap/kesha-voice-kit
+brew audit --strict --formula drakulavich/tap/kesha-voice-kit
 ```
 
 ## Release Updates
