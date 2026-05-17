@@ -1,0 +1,31 @@
+name: Tests
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: macos-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Tap Bun formula
+        run: brew tap oven-sh/bun
+
+      - name: Tap local checkout
+        run: brew tap drakulavich/kesha "$GITHUB_WORKSPACE"
+
+      - name: Install formula
+        run: brew install --build-from-source drakulavich/kesha/kesha-voice-kit
+
+      - name: Audit formula
+        run: brew audit --strict --formula drakulavich/kesha/kesha-voice-kit
+
+      - name: Test formula
+        run: brew test drakulavich/kesha/kesha-voice-kit
