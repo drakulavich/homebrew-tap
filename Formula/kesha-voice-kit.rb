@@ -1,8 +1,8 @@
 class KeshaVoiceKit < Formula
   desc "Local speech-to-text, text-to-speech, and language detection toolkit"
   homepage "https://github.com/drakulavich/kesha-voice-kit"
-  url "https://github.com/drakulavich/kesha-voice-kit/archive/refs/tags/v1.24.5.tar.gz"
-  sha256 "ef48e7205c3b770754faae69eaef12e71292e620fe48a726caa0e95d2a78d453"
+  url "https://github.com/drakulavich/kesha-voice-kit/archive/refs/tags/v1.24.6.tar.gz"
+  sha256 "2986ccb15db96b7e6cbf4b10f3f0c1225071a7a8c6ecbc0fe38f53d3cc634caf"
   license "MIT"
 
   depends_on "oven-sh/bun/bun"
