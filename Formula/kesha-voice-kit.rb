@@ -1,14 +1,16 @@
 class KeshaVoiceKit < Formula
   desc "Local speech-to-text, text-to-speech, and language detection toolkit"
   homepage "https://github.com/drakulavich/kesha-voice-kit"
-  url "https://github.com/drakulavich/kesha-voice-kit/archive/refs/tags/v2.1.0.tar.gz"
-  sha256 "0ddf688d0ae3313fa531d8c9e85c930de6759c78a356064c2617044f1065c22b"
+  # Release rewrites this pin; CI's homebrew-formula lane instead builds a git-archive of HEAD,
+  # so `install` must stage only paths that exist at HEAD (#924).
+  url "https://github.com/drakulavich/kesha-voice-kit/archive/refs/tags/v2.2.0.tar.gz"
+  sha256 "3877023e0574ef1d8dd3043f277521e930cea5994aff192b4c3f2bc779b796a8"
   license "MIT"
 
   depends_on "oven-sh/bun/bun"
 
   def install
-    libexec.install "bin", "src", "package.json", "bun.lock", "tsconfig.json"
+    libexec.install "bin", "src", "completions", "man", "model-plan.json", "package.json", "bun.lock", "tsconfig.json"
     libexec.install "openclaw.plugin.json", "openclaw-plugin.cjs"
     libexec.install "LICENSE", "NOTICES.md", "README.md"
 
@@ -20,15 +22,13 @@ class KeshaVoiceKit < Formula
       #!/bin/bash
       exec "#{formula_opt_bin("oven-sh/bun/bun")}/bun" "#{libexec}/bin/kesha.js" "$@"
     EOS
-
-    (bin/"parakeet").write <<~EOS
-      #!/bin/bash
-      exec "#{formula_opt_bin("oven-sh/bun/bun")}/bun" "#{libexec}/bin/kesha.js" "$@"
-    EOS
   end
 
   test do
     assert_match version.to_s, shell_output("#{bin}/kesha --version")
-    assert_match version.to_s, shell_output("#{bin}/parakeet --version")
+    # The commands that read staged assets — a payload missing them still passes --version (#914).
+    assert_match "complete -c kesha", shell_output("#{bin}/kesha completions fish")
+    assert_match ".TH KESHA 1", shell_output("#{bin}/kesha manpage")
+    assert_match "Kesha install plan", shell_output("#{bin}/kesha install --plan")
   end
 end
