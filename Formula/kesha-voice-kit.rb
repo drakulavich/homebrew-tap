@@ -3,8 +3,8 @@ class KeshaVoiceKit < Formula
   homepage "https://github.com/drakulavich/kesha-voice-kit"
   # Release rewrites this pin; CI's homebrew-formula lane instead builds a git-archive of HEAD,
   # so `install` must stage only paths that exist at HEAD (#924).
-  url "https://github.com/drakulavich/kesha-voice-kit/archive/refs/tags/v2.2.0.tar.gz"
-  sha256 "3877023e0574ef1d8dd3043f277521e930cea5994aff192b4c3f2bc779b796a8"
+  url "https://github.com/drakulavich/kesha-voice-kit/archive/refs/tags/v2.3.0.tar.gz"
+  sha256 "7cd60eca4254a2b54ca14d3f97d3897192b3ba787d9fe4c9add4aeb344e6a57a"
   license "MIT"
 
   depends_on "oven-sh/bun/bun"
