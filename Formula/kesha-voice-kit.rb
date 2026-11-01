@@ -3,11 +3,11 @@ class KeshaVoiceKit < Formula
   homepage "https://github.com/drakulavich/kesha-voice-kit"
   # Release rewrites this pin; CI's homebrew-formula lane instead builds a git-archive of HEAD,
   # so `install` must stage only paths that exist at HEAD (#924).
-  url "https://github.com/drakulavich/kesha-voice-kit/archive/refs/tags/v2.4.0.tar.gz"
-  sha256 "2b4f264b30ba404a301fccdade3364b096d8463244d3c0b5834c92bd8974063e"
+  url "https://github.com/drakulavich/kesha-voice-kit/archive/refs/tags/v2.5.0.tar.gz"
+  sha256 "3295cf6617aaa33949863693af7d3002988ddc67686b23fa57ad68af5d6b9435"
   license "MIT"
 
-  depends_on "oven-sh/bun/bun"
+  depends_on "bun"
 
   def install
     libexec.install "bin", "src", "completions", "man", "model-plan.json", "package.json", "bun.lock", "tsconfig.json"
@@ -20,7 +20,7 @@ class KeshaVoiceKit < Formula
 
     (bin/"kesha").write <<~EOS
       #!/bin/bash
-      exec "#{formula_opt_bin("oven-sh/bun/bun")}/bun" "#{libexec}/bin/kesha.js" "$@"
+      exec "#{formula_opt_bin("bun")}/bun" "#{libexec}/bin/kesha.js" "$@"
     EOS
   end
 
